@@ -53,6 +53,7 @@
             this.RTB_Table.Size = new System.Drawing.Size(458, 338);
             this.RTB_Table.TabIndex = 0;
             this.RTB_Table.Text = "";
+            this.RTB_Table.TextChanged += new System.EventHandler(this.RTB_Table_TextChanged);
             // 
             // BUTTON_GenerateTable
             // 
@@ -62,6 +63,7 @@
             this.BUTTON_GenerateTable.TabIndex = 1;
             this.BUTTON_GenerateTable.Text = "Generuj tabelę problemów";
             this.BUTTON_GenerateTable.UseVisualStyleBackColor = true;
+            this.BUTTON_GenerateTable.Click += new System.EventHandler(this.BUTTON_GenerateTable_Click);
             // 
             // BUTTON_StartSimplex
             // 
@@ -71,6 +73,7 @@
             this.BUTTON_StartSimplex.TabIndex = 2;
             this.BUTTON_StartSimplex.Text = "Wylicz metodą Simplex";
             this.BUTTON_StartSimplex.UseVisualStyleBackColor = true;
+            this.BUTTON_StartSimplex.Click += new System.EventHandler(this.BUTTON_StartSimplex_Click);
             // 
             // BUTTON_StartSimAnno
             // 
@@ -80,6 +83,7 @@
             this.BUTTON_StartSimAnno.TabIndex = 3;
             this.BUTTON_StartSimAnno.Text = "Wylicz Symulowanym Wyżarzaniem";
             this.BUTTON_StartSimAnno.UseVisualStyleBackColor = true;
+            this.BUTTON_StartSimAnno.Click += new System.EventHandler(this.BUTTON_StartSimAnno_Click);
             // 
             // BUTTON_ShowSimplex
             // 
@@ -116,6 +120,7 @@
             this.BUTTON_ShowTable.TabIndex = 7;
             this.BUTTON_ShowTable.Text = "Wyświetl tabelę";
             this.BUTTON_ShowTable.UseVisualStyleBackColor = true;
+            this.BUTTON_ShowTable.Click += new System.EventHandler(this.BUTTON_ShowTable_Click);
             // 
             // RADIO_AllInstances
             // 
