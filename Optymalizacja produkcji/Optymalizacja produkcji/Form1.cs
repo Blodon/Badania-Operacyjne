@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Optymalizacja_produkcji.Methods.Linear_Methods;
 
 namespace Optymalizacja_produkcji
 {
@@ -26,8 +27,6 @@ namespace Optymalizacja_produkcji
         double[] ograniczenieSlod = new double[100];
         double[] ograniczenieChmiel = new double[100];
         double[] ograniczenieWoda = new double[100];
-
-
         public MainForm()
         {
             int dym = 100;
@@ -44,7 +43,6 @@ namespace Optymalizacja_produkcji
 
             InitializeComponent();
         }
-
         private void RTB_Table_TextChanged(object sender, EventArgs e)
         {
            
@@ -67,11 +65,6 @@ namespace Optymalizacja_produkcji
                 ograniczenieWoda[powtorzenia] = rnd.Next(1000, 2000);
 
             }
-        }
-
-        private void BUTTON_StartSimplex_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void BUTTON_StartSimAnno_Click(object sender, EventArgs e)
@@ -139,6 +132,22 @@ namespace Optymalizacja_produkcji
             }
             RTB_Table.Text = ShowTable;
         }
-        
+        private void BUTTON_StartSimplex_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+
+            double[] c = { 30, 20 };
+            double[,] A = { {2,1 }, {3,3}, {1.5,0} };
+            double[] b = { 1000, 2400, 600 };
+
+            Simplex simplex = new Simplex(c, A, b);
+
+            textSimplex.Text = simplex.maximize().Item1.ToString();
+        }
+
+        private void textSimplex_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
