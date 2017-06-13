@@ -16,17 +16,16 @@ namespace Optymalizacja_produkcji
         Random rnd = new Random();
 
         string ShowTable;
-        int piwa = 4;
 
         double[,] cena = new double[4, 100];
-
-        double slodMax;
-        double chmielMax;
-        double wodaMax;
 
         double[,] slod = new double[4, 100];
         double[,] chmiel = new double[4, 100];
         double[,] woda = new double[4, 100];
+
+        double[] ograniczenieSlod = new double[100];
+        double[] ograniczenieChmiel = new double[100];
+        double[] ograniczenieWoda = new double[100];
 
 
         public MainForm()
@@ -53,15 +52,19 @@ namespace Optymalizacja_produkcji
 
         private void BUTTON_GenerateTable_Click(object sender, EventArgs e)
         {
-            for(int piwo = 0; piwo < 4; piwo++)
+            for(int powtorzenia = 0; powtorzenia < 100; powtorzenia++)
             {
-                for(int powtorzenia = 0; powtorzenia < 100; powtorzenia++)
+                for(int piwo = 0; piwo < 4; piwo++)
                 {
                     cena[piwo, powtorzenia] = rnd.Next(1,10);
                     slod[piwo, powtorzenia] = rnd.Next(3, 15);
                     chmiel[piwo, powtorzenia] = rnd.Next(2, 20);
                     woda[piwo, powtorzenia] = rnd.Next(1, 10);
                 }
+
+                ograniczenieSlod[powtorzenia] = rnd.Next(1000, 2000);
+                ograniczenieChmiel[powtorzenia] = rnd.Next(1000, 2000);
+                ograniczenieWoda[powtorzenia] = rnd.Next(1000, 2000);
 
             }
         }
@@ -78,42 +81,60 @@ namespace Optymalizacja_produkcji
 
         private void BUTTON_ShowTable_Click(object sender, EventArgs e)
         {
+            RTB_Table.Clear();
+
             ShowTable = "";
             for (int powtorzenia = 0; powtorzenia < 100; powtorzenia++)
             {
-                RTB_Table.Clear();
                 ShowTable += "tabela ";
                 ShowTable += powtorzenia + 1;
                 ShowTable += "\nPiwo:";
+
                 for (int piwo = 0; piwo < 4; piwo++)
                 {
                     ShowTable += "\tPiwo";
                     ShowTable += piwo;
                 }
-                ShowTable += "\nCena:";
-                for (int piwo = 0; piwo < 4; piwo++)
-                {
-                    ShowTable += "\t";
-                    ShowTable += cena[piwo,powtorzenia];
-                }
+                ShowTable += "\tZasób:";
+
+
                 ShowTable += "\nSlod:";
                 for (int piwo = 0; piwo < 4; piwo++)
                 {
                     ShowTable += "\t";
                     ShowTable += slod[piwo, powtorzenia];
                 }
+                ShowTable += "\t";
+                ShowTable += ograniczenieSlod[powtorzenia];
+
+
                 ShowTable += "\nChmiel:";
                 for (int piwo = 0; piwo < 4; piwo++)
                 {
                     ShowTable += "\t";
                     ShowTable += chmiel[piwo, powtorzenia];
                 }
+                ShowTable += "\t";
+                ShowTable += ograniczenieChmiel[powtorzenia];
+
+
                 ShowTable += "\nWoda:";
                 for (int piwo = 0; piwo < 4; piwo++)
                 {
                     ShowTable += "\t";
                     ShowTable += woda[piwo, powtorzenia];
                 }
+                ShowTable += "\t";
+                ShowTable += ograniczenieWoda[powtorzenia];
+
+
+                ShowTable += "\nCena:";
+                for (int piwo = 0; piwo < 4; piwo++)
+                {
+                    ShowTable += "\t";
+                    ShowTable += cena[piwo, powtorzenia];
+                }
+
                 ShowTable += "\n\n";
             }
             RTB_Table.Text = ShowTable;
